@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingfeng.infrastructure.dao.IAiAgentDrawConfigDao">
+
+    <resultMap id="BaseResultMap" type="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="config_id" property="configId" jdbcType="VARCHAR"/>
+        <result column="config_name" property="configName" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="agent_id" property="agentId" jdbcType="VARCHAR"/>
+        <result column="config_data" property="configData" jdbcType="LONGVARCHAR"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, config_id, config_name, description, agent_id, config_data, version, status,
+        create_by, update_by, create_time, update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ai_agent_draw_config (config_id, config_name, description, agent_id, config_data,
+                                          version, status, create_by, update_by, create_time, update_time)
+        VALUES (#{configId}, #{configName}, #{description}, #{agentId}, #{configData},
+                #{version}, #{status}, #{createBy}, #{updateBy}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO ai_agent_draw_config (config_id, config_name, description, agent_id, config_data,
+                                          version, status, create_by, update_by, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.configId}, #{item.configName}, #{item.description}, #{item.agentId}, #{item.configData},
+             #{item.version}, #{item.status}, #{item.createBy}, #{item.updateBy}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM ai_agent_draw_config WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig">
+        DELETE FROM ai_agent_draw_config
+        <where>
+            <if test="configId != null and configId != ''">
+                AND config_id = #{configId}
+            </if>
+            <if test="configName != null and configName != ''">
+                AND config_name = #{configName}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                AND agent_id = #{agentId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                AND create_by = #{createBy}
+            </if>
+        </where>
+    </delete>
+
+    <update id="update" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig">
+        UPDATE ai_agent_draw_config
+        <set>
+            <if test="configId != null and configId != ''">
+                config_id = #{configId},
+            </if>
+            <if test="configName != null and configName != ''">
+                config_name = #{configName},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="agentId != null">
+                agent_id = #{agentId},
+            </if>
+            <if test="configData != null">
+                config_data = #{configData},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_agent_draw_config
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByCondition" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_agent_draw_config
+        <where>
+            <if test="configId != null and configId != ''">
+                AND config_id = #{configId}
+            </if>
+            <if test="configName != null and configName != ''">
+                AND config_name = #{configName}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                AND agent_id = #{agentId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                AND create_by = #{createBy}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectList" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_agent_draw_config
+        <where>
+            <if test="configId != null and configId != ''">
+                AND config_id = #{configId}
+            </if>
+            <if test="configName != null and configName != ''">
+                AND config_name LIKE CONCAT('%', #{configName}, '%')
+            </if>
+            <if test="agentId != null and agentId != ''">
+                AND agent_id = #{agentId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                AND create_by = #{createBy}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_agent_draw_config
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="count" parameterType="com.lingfeng.infrastructure.dao.po.AiAgentDrawConfig" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM ai_agent_draw_config
+        <where>
+            <if test="configId != null and configId != ''">
+                AND config_id = #{configId}
+            </if>
+            <if test="configName != null and configName != ''">
+                AND config_name LIKE CONCAT('%', #{configName}, '%')
+            </if>
+            <if test="agentId != null and agentId != ''">
+                AND agent_id = #{agentId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                AND create_by = #{createBy}
+            </if>
+        </where>
+    </select>
+
+</mapper>

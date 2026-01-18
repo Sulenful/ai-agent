@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingfeng.infrastructure.dao.IAiClientRagOrderDao">
+
+    <resultMap id="BaseResultMap" type="com.lingfeng.infrastructure.dao.po.AiClientRagOrder">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="rag_id" property="ragId" jdbcType="VARCHAR"/>
+        <result column="rag_name" property="ragName" jdbcType="VARCHAR"/>
+        <result column="knowledge_tag" property="knowledgeTag" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, rag_id, rag_name, knowledge_tag, status, create_time, update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ai_client_rag_order (rag_id, rag_name, knowledge_tag, status, create_time, update_time)
+        VALUES (#{ragId}, #{ragName}, #{knowledgeTag}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO ai_client_rag_order (rag_id, rag_name, knowledge_tag, status, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.ragId}, #{item.ragName}, #{item.knowledgeTag}, #{item.status}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM ai_client_rag_order WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder">
+        DELETE FROM ai_client_rag_order
+        <where>
+            <if test="ragId != null and ragId != ''">
+                AND rag_id = #{ragId}
+            </if>
+            <if test="ragName != null and ragName != ''">
+                AND rag_name = #{ragName}
+            </if>
+            <if test="knowledgeTag != null and knowledgeTag != ''">
+                AND knowledge_tag = #{knowledgeTag}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </delete>
+
+    <update id="update" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder">
+        UPDATE ai_client_rag_order
+        <set>
+            <if test="ragId != null and ragId != ''">
+                rag_id = #{ragId},
+            </if>
+            <if test="ragName != null and ragName != ''">
+                rag_name = #{ragName},
+            </if>
+            <if test="knowledgeTag != null and knowledgeTag != ''">
+                knowledge_tag = #{knowledgeTag},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_client_rag_order
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByCondition" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_client_rag_order
+        <where>
+            <if test="ragId != null and ragId != ''">
+                AND rag_id = #{ragId}
+            </if>
+            <if test="ragName != null and ragName != ''">
+                AND rag_name = #{ragName}
+            </if>
+            <if test="knowledgeTag != null and knowledgeTag != ''">
+                AND knowledge_tag = #{knowledgeTag}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectList" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_client_rag_order
+        <where>
+            <if test="ragId != null and ragId != ''">
+                AND rag_id = #{ragId}
+            </if>
+            <if test="ragName != null and ragName != ''">
+                AND rag_name LIKE CONCAT('%', #{ragName}, '%')
+            </if>
+            <if test="knowledgeTag != null and knowledgeTag != ''">
+                AND knowledge_tag = #{knowledgeTag}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM ai_client_rag_order
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="count" parameterType="com.lingfeng.infrastructure.dao.po.AiClientRagOrder" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM ai_client_rag_order
+        <where>
+            <if test="ragId != null and ragId != ''">
+                AND rag_id = #{ragId}
+            </if>
+            <if test="ragName != null and ragName != ''">
+                AND rag_name LIKE CONCAT('%', #{ragName}, '%')
+            </if>
+            <if test="knowledgeTag != null and knowledgeTag != ''">
+                AND knowledge_tag = #{knowledgeTag}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+
+</mapper>
