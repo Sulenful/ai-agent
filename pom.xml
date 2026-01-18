@@ -63,6 +63,14 @@
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>cn.bugstack.wrench</groupId>
+                <artifactId>xfg-wrench-bom</artifactId>
+                <version>3.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring AI -->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
