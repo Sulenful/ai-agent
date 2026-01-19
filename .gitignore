@@ -39,7 +39,9 @@ build/
 **/logs/
 **/log/
 *.log
-data/
+# 只忽略应用根目录和模块目录下的data目录（日志数据）
+/data/
+/*/data/
 
 ### Temp files **/
 *.tmp
