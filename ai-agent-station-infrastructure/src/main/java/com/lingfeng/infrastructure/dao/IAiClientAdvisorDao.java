@@ -61,4 +61,6 @@ public interface IAiClientAdvisorDao {
      * 根据条件统计数量
      */
     int count(AiClientAdvisor condition);
+
+    AiClientAdvisor queryByAdvisorId(String advisorId);
 }

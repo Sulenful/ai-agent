@@ -48,13 +48,15 @@ spring:
       api-key: sk-BdtBBcPi6FjhU7aBBfFdC9B137834115B54a48Ba2d9021C4
 
 # MyBatis 配置【如需使用记得打开】
-#mybatis:
-#  mapper-locations: classpath:/mybatis/mapper/*.xml
-#  config-location:  classpath:/mybatis/config/mybatis-config.xml
+# 注意：多数据源配置在 DataSourceConfig.java 中
 
 # 日志
 logging:
   level:
     root: info
+    # 打印Mapper接口的SQL日志
+    com.lingfeng.infrastructure.dao: debug
+    # 打印MyBatis SQL执行详情（可选）
+    # org.apache.ibatis: debug
   config: classpath:logback-spring.xml
 

@@ -152,4 +152,10 @@
         </where>
     </select>
 
+    <select id="queryByModelId" resultType="com.lingfeng.infrastructure.dao.po.AiClientModel">
+        SELECT id, model_id, api_id, model_name, model_type, model_usage, status, create_time, update_time
+        FROM ai_client_model
+        WHERE model_id = #{modelId}
+    </select>
+
 </mapper>

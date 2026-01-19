@@ -152,4 +152,10 @@
         </where>
     </select>
 
+    <select id="queryByMcpId" resultType="com.lingfeng.infrastructure.dao.po.AiClientToolMcp">
+        SELECT id, mcp_id, mcp_name, transport_type, transport_config, request_timeout, status, create_time, update_time
+        FROM ai_client_tool_mcp
+        WHERE mcp_id = #{mcpId}
+    </select>
+
 </mapper>

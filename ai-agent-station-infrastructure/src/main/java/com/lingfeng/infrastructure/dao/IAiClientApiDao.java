@@ -61,4 +61,6 @@ public interface IAiClientApiDao {
      * 根据条件统计数量
      */
     int count(AiClientApi condition);
+
+    AiClientApi queryByApiId(String apiId);
 }

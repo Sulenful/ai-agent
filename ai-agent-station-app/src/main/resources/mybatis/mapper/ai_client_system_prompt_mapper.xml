@@ -136,4 +136,10 @@
         </where>
     </select>
 
+    <select id="queryByPromptId" resultType="com.lingfeng.infrastructure.dao.po.AiClientSystemPrompt">
+        SELECT id, prompt_id, prompt_name, prompt_content, description, status, create_time, update_time
+        FROM ai_client_system_prompt
+        WHERE prompt_id = #{promptId}
+    </select>
+
 </mapper>

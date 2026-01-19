@@ -61,4 +61,6 @@ public interface IAiClientToolMcpDao {
      * 根据条件统计数量
      */
     int count(AiClientToolMcp condition);
+
+    AiClientToolMcp queryByMcpId(String mcpId);
 }

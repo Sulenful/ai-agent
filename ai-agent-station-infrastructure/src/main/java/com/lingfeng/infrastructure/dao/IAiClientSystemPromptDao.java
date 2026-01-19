@@ -61,4 +61,6 @@ public interface IAiClientSystemPromptDao {
      * 根据条件统计数量
      */
     int count(AiClientSystemPrompt condition);
+
+    AiClientSystemPrompt queryByPromptId(String promptId);
 }

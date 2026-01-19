@@ -152,4 +152,10 @@
         </where>
     </select>
 
+    <select id="queryByAdvisorId" resultType="com.lingfeng.infrastructure.dao.po.AiClientAdvisor">
+        SELECT id, advisor_id, advisor_name, advisor_type, order_num, ext_param, status, create_time, update_time
+        FROM ai_client_advisor
+        WHERE advisor_id = #{advisorId}
+    </select>
+
 </mapper>

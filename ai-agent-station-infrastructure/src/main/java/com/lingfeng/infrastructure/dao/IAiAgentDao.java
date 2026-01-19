@@ -61,4 +61,10 @@ public interface IAiAgentDao {
      * 根据条件统计数量
      */
     int count(AiAgent condition);
+
+    AiAgent queryByAgentId(String aiAgentId);
+
+    List<AiAgent> queryEnabledAgents();
+
+
 }

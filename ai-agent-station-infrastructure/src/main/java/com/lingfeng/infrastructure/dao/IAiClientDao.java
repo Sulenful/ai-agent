@@ -61,4 +61,6 @@ public interface IAiClientDao {
      * 根据条件统计数量
      */
     int count(AiClient condition);
+
+    AiClient queryByClientId(String clientId);
 }

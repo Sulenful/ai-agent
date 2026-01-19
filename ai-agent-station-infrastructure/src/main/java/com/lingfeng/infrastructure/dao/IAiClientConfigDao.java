@@ -61,4 +61,6 @@ public interface IAiClientConfigDao {
      * 根据条件统计数量
      */
     int count(AiClientConfig condition);
+
+    List<AiClientConfig> queryBySourceTypeAndId(@Param("sourceType") String sourceType, @Param("sourceId") String clientId);
 }

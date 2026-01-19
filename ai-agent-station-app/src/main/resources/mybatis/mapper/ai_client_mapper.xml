@@ -132,4 +132,10 @@
         </where>
     </select>
 
+    <select id="queryByClientId" resultType="com.lingfeng.infrastructure.dao.po.AiClient">
+        SELECT id, client_id, client_name, description, status, create_time, update_time
+        FROM ai_client
+        WHERE client_id = #{clientId}
+    </select>
+
 </mapper>

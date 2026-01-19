@@ -61,4 +61,11 @@ public interface IAiAgentTaskScheduleDao {
      * 根据条件统计数量
      */
     int count(AiAgentTaskSchedule condition);
+
+    List<AiAgentTaskSchedule> queryAllValidTaskSchedule();
+
+
+    List<Long> queryAllInvalidTaskScheduleIds();
+
+
 }

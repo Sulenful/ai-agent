@@ -152,4 +152,11 @@
         </where>
     </select>
 
+    <select id="queryByAgentId" resultType="com.lingfeng.infrastructure.dao.po.AiAgentFlowConfig">
+        SELECT id, agent_id, client_id, client_name, client_type, sequence, step_prompt, create_time
+        FROM ai_agent_flow_config
+        WHERE agent_id = #{agentId}
+        ORDER BY sequence ASC
+    </select>
+
 </mapper>

@@ -61,4 +61,7 @@ public interface IAiAgentFlowConfigDao {
      * 根据条件统计数量
      */
     int count(AiAgentFlowConfig condition);
+
+    List<AiAgentFlowConfig> queryByAgentId(String aiAgentId);
+
 }
