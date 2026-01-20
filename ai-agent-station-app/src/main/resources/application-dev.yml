@@ -46,6 +46,9 @@ spring:
     openai:
       base-url: https://apis.itedus.cn
       api-key: sk-BdtBBcPi6FjhU7aBBfFdC9B137834115B54a48Ba2d9021C4
+    agent:
+      auto-config:
+        enabled: true
 
 # MyBatis 配置【如需使用记得打开】
 # 注意：多数据源配置在 DataSourceConfig.java 中

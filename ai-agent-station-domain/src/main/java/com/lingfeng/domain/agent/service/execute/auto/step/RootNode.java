@@ -16,7 +16,7 @@ import java.util.Map;
  * @date: 2026/1/20 14:22
  * @description:
  */
-@Service
+@Service("executeRootNode")
 @Slf4j(topic = "ExecuteRootNode")
 public class RootNode extends AbstractExecuteSupport {
 

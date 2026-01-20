@@ -62,7 +62,7 @@ public interface IAiAgentDao {
      */
     int count(AiAgent condition);
 
-    AiAgent queryByAgentId(String aiAgentId);
+    AiAgent queryByAgentId(@Param("agentId") String agentId);
 
     List<AiAgent> queryEnabledAgents();
 

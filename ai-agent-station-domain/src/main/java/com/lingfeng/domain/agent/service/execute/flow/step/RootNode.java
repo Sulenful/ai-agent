@@ -15,7 +15,7 @@ import java.util.Map;
  * @date: 2026/1/20 13:51
  * @description:
  */
-@Service
+@Service("flowRootNode")
 @Slf4j(topic = "FlowRootNode")
 public class RootNode extends AbstractExecuteSupport{
     @Override

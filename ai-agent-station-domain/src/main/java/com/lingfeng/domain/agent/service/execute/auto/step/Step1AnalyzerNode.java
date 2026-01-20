@@ -34,6 +34,8 @@ public class Step1AnalyzerNode extends AbstractExecuteSupport {
                 requestParameter.getMessage(),
                 // 当前执行步长
                 dynamicContext.getStep(),
+                // 最大步长
+                dynamicContext.getMaxStep(),
                 // 历史执行记录
                 dynamicContext.getExecutionHistory().isEmpty() ? "【首次执行】" : dynamicContext.getExecutionHistory().toString(),
                 // 当前任务
